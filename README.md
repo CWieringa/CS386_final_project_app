@@ -14,6 +14,10 @@ The target user is someone like me, who wants to get in the habit of recording t
 
 __How the app is structered__
 
+The app follows an MVC structure. It starts with MyApp, which leads to HomePage, showing workout history using WorkoutController and DatabaseHelper. From there, the user goes to WorkoutSelectionPage to pick a workout type, which navigates to either ExercisePage or LowerBodyExercisePage. These pages handle user input with ExerciseEntryWidget, and store data using ExerciseController and DatabaseHelper.
+
+ExerciseEntryWidget lets users input sets, reps, and weight, while ExerciseController manages the list of exercises. WorkoutController tracks workout completion with a WorkoutLog. DatabaseHelper handles all data storage and retrieval.
+
 ```mermaid
 classDiagram
     class MyApp {
@@ -130,7 +134,7 @@ __How to install and run the app__
 
 To install run through the installation process for flutter and dart for vscode. Then download this repository and open it in vscode. In vscode navigate to main.dart and select run. This will build and run the app. To open a phone simulation on your computer, cd to your project folder and type "open -a Simulator" into the terminal. Rerun the app with vscode. You should be able to select the simulator if its not automatically selected.
 
-__How to use key features (add screenshots or GIFs if helpful)__
+__How to use key features__
 
 The home page holds a calendar, the calendar will track your workout history. See workout details by clicking or tapping on a highlighted day. After starting a workout, take notes, give your workout a title, and track your time at the top of the page. Enter reps and weights into the exercise tables below. When your finished, select "Finish" in the top left.
 
