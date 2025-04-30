@@ -27,6 +27,8 @@ classDiagram
 
 __How to install and run the app__
 
+To install...
+
 __How to use key features (add screenshots or GIFs if helpful)__
 
 __How do you test it?__
