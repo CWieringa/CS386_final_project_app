@@ -16,22 +16,127 @@ __How the app is structered__
 
 ```mermaid
 classDiagram
-  class ExerciseEntry {
-    +String exerciseName
-    +int reps
-    +int weight
-    +ExerciseEntry(String exerciseName, int reps=0, int weight=0)
-  }
+    class MyApp {
+        +build(BuildContext context)
+    }
+
+    class HomePage {
+        +createState()
+    }
+
+    class _HomePageState {
+        -WorkoutController _workoutController
+        -WorkoutLog _workoutLog
+        +_loadWorkoutDates()
+        +_hasWorkoutOn(DateTime)
+        +_showWorkoutDetails(DateTime)
+    }
+
+    class WorkoutSelectionPage {
+        +build(BuildContext context)
+    }
+
+    class ExercisePage {
+        +createState()
+    }
+
+    class _ExercisePageState {
+        -List<GlobalKey> exerciseKeys
+        -List<String> exerciseNames
+        +_finishWorkout()
+    }
+
+    class LowerBodyExercisePage {
+        +createState()
+    }
+
+    class _LowerBodyExercisePageState {
+        -List<GlobalKey> exerciseKeys
+        -List<String> exerciseNames
+        +_finishWorkout()
+    }
+
+    class DatabaseHelper {
+        +insertWorkout(...)
+        +insertExercise(...)
+        +insertSet(...)
+        +getAllWorkouts()
+        +getWorkoutsByDate(DateTime)
+        +getExercisesWithSets(int)
+    }
+
+    class ExerciseEntryWidget {
+        +getExerciseData()
+        +addSet()
+        +toggleComplete(int)
+    }
+
+    class ExerciseEntryWidgetState {
+        -List<TextEditingController> weightControllers
+        -List<TextEditingController> repsControllers
+        -List<boolunofficial copy to clipboard
+        -List<bool> isCompleted
+    }
+
+    class ExerciseController {
+        -List<ExerciseEntry> entries
+        +updateEntry(int, int, int)
+        +getSummary()
+    }
+
+    class WorkoutController {
+        -WorkoutLog workoutLog
+        +markTodayComplete()
+        +isDayComplete(DateTime)
+    }
+
+    class ExerciseEntry {
+        -String exerciseName
+        -int reps
+        -int weight
+    }
+
+    class WorkoutLog {
+        -Map<DateTime, bool> _log
+        +markWorkoutDone(DateTime)
+        +isWorkoutDone(DateTime)
+        +log
+    }
+
+    %% Relationships
+    MyApp --> HomePage
+    HomePage --> WorkoutSelectionPage
+    WorkoutSelectionPage --> ExercisePage
+    WorkoutSelectionPage --> LowerBodyExercisePage
+    ExercisePage --> DatabaseHelper
+    LowerBodyExercisePage --> DatabaseHelper
+    _HomePageState --> DatabaseHelper
+
+    ExercisePage --> ExerciseEntryWidget
+    LowerBodyExercisePage --> ExerciseEntryWidget
+    ExerciseEntryWidget --> ExerciseEntryWidgetState
+
+    _ExercisePageState --> ExerciseController
+    _LowerBodyExercisePageState --> ExerciseController
+
+    _HomePageState --> WorkoutController
+    WorkoutController --> WorkoutLog
+
+    ExerciseController --> ExerciseEntry
 ```
 # Instructions
 
 __How to install and run the app__
 
-To install...
+To install run through the installation process for flutter and dart for vscode. Then download this repository and open it in vscode. In vscode navigate to main.dart and select run. This will build and run the app. To open a phone simulation on your computer, cd to your project folder and type "open -a Simulator" into the terminal. Rerun the app with vscode. You should be able to select the simulator if its not automatically selected.
 
 __How to use key features (add screenshots or GIFs if helpful)__
 
+The home page holds a calendar, the calendar will track your workout history. See workout details by clicking or tapping on a highlighted day. After starting a workout, take notes, give your workout a title, and track your time at the top of the page. Enter reps and weights into the exercise tables below. When your finished, select "Finish" in the top left.
+
 __How do you test it?__
+
+Test it by following the installation process, and then testing any feature listed in the pararaph above.
 
 # Challenges, Role of AI, Insights
 
